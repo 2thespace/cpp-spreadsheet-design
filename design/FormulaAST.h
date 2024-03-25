@@ -17,7 +17,7 @@ class ParsingError : public std::runtime_error {
 
 class FormulaAST {
 public:
-    explicit FormulaAST(std::unique_ptr<ASTImpl::Expr> root_expr);
+    explicit FormulaAST(std::unique_ptr<ASTImpl::Expr> root_expr, std::forward_list<Cell*> cell_expr);
     FormulaAST(FormulaAST&&) = default;
     FormulaAST& operator=(FormulaAST&&) = default;
     ~FormulaAST();
@@ -28,6 +28,7 @@ public:
 
 private:
     std::unique_ptr<ASTImpl::Expr> root_expr_;
+    std::forward_list<Cell*> cell_expr_;
 };
 
 FormulaAST ParseFormulaAST(std::istream& in);
