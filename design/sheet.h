@@ -30,5 +30,5 @@ private:
                     const std::function<void(const CellInterface&)>& printCell) const;
     Size GetActualSize() const;
 
-    std::vector<std::vector<std::unique_ptr<Cell>>> cells_;
+   std::unordered_map<Position, Cell, SheetHasher, SheetComporator> cells_;
 };
